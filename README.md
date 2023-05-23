@@ -107,4 +107,103 @@ La estructura modular del sistema sigue un enfoque MVC (Modelo-Vista-Controlador
 - Módulo de Seguimiento de Órdenes: Permite a los usuarios ver el estado de sus préstamos y actualizar el estado de las órdenes (entregado, multa pendiente, etc.).
 - Módulo de Multas: Maneja la generación y visualización de multas, así como su estado y pagos.
 
+## 5. Lógica/Reglas del Negocio
+
+Las reglas de negocio y la lógica de la aplicación de Biblioteca Online se centran en el manejo de los siguientes aspectos:
+
+### Registro de Usuarios:
+
+- Los usuarios deben proporcionar información válida y completa al registrarse en la aplicación.
+- Se verifica que la dirección de correo electrónico sea única y no esté registrada previamente.
+- Las contraseñas se almacenan de forma segura utilizando técnicas de hash y sal para proteger la información del usuario.
+
+### Inicio de Sesión:
+
+- Los usuarios deben proporcionar credenciales válidas (correo electrónico y contraseña) para iniciar sesión en la aplicación.
+- Se verifica la validez de las credenciales ingresadas y se autentica al usuario mediante una comparación con los datos almacenados en la base de datos.
+
+### Búsqueda y Filtrado de Libros:
+
+- Los usuarios pueden buscar libros por su nombre utilizando la barra de búsqueda.
+- Los libros se filtran por categorías seleccionadas, mostrando solo aquellos que correspondan a la categoría elegida.
+- Los resultados de búsqueda y filtrado se presentan al usuario de manera dinámica y actualizada en la interfaz.
+
+### Detalles del Libro:
+
+- Al hacer clic en el botón "+" de un libro, se accede a los detalles específicos de ese libro.
+- Se muestra al usuario información detallada sobre el libro, como portada, título, ISBN, autor, género, editorial y stock disponible.
+
+### Órdenes de Préstamo:
+
+- Los usuarios pueden realizar órdenes de préstamo de libros disponibles.
+- Se verifica la disponibilidad de stock del libro antes de generar una orden de préstamo.
+- Se registra la información de la orden, incluyendo la fecha de préstamo y la fecha de caducidad.
+- Se proporciona al usuario una notificación de confirmación o error dependiendo del resultado de la generación de la orden.
+
+### Seguimiento de Órdenes y Multas:
+
+- Los usuarios pueden acceder a la página de órdenes para ver el estado de sus préstamos.
+- Se muestra al usuario una lista de sus órdenes de préstamo, incluyendo detalles como la imagen del libro, el ISBN, la fecha de préstamo y la fecha de caducidad.
+- Se permite al usuario actualizar el estado de una orden, marcándola como "entregada" cuando el libro se devuelve o indicando una "multa pendiente" si el libro no se devuelve a tiempo.
+- Las multas se generan automáticamente si un libro no se devuelve antes de la fecha de caducidad.
+- Los usuarios pueden acceder a la página de multas para ver las multas pendientes, incluyendo detalles como la fecha de creación, el monto a pagar y el estado de la multa.
+
+Estas reglas de negocio y lógica de la aplicación garantizan que los usuarios puedan registrarse, buscar, ordenar y realizar un seguimiento de sus préstamos de libros de manera eficiente y precisa, siguiendo las normas y restricciones establecidas en el sistema de biblioteca.
+
+## 6. Descripción Interfaz de la aplicación
+
+La aplicación de Biblioteca FCM presenta una interfaz intuitiva y fácil de usar para los usuarios. A continuación, se proporciona una descripción detallada de los componentes y características clave de la interfaz desde una perspectiva técnica.
+
+### Página de Inicio:
+
+La página de inicio muestra un formulario de registro para que los usuarios se registren en la aplicación. Está diseñada utilizando HTML y CSS (Materialize CSS) para lograr una apariencia atractiva y receptiva. El formulario de registro utiliza campos como nombre, dirección de correo electrónico, contraseña, etc., para recopilar la información del usuario. El registro se realiza a través de una solicitud POST a través de Node.js y Express.
+
+### Inicio de Sesión:
+
+Después de registrarse, los usuarios pueden iniciar sesión en la aplicación utilizando su dirección de correo electrónico y contraseña. El inicio de sesión se realiza a través de un formulario de inicio de sesión en el panel izquierdo de la interfaz. Los datos ingresados por el usuario se validan y se realiza una verificación con la base de datos de Oracle utilizando el módulo oracledb en Node.js.
+
+### Página Principal:
+
+La página principal muestra una lista de libros registrados en la biblioteca. Cada libro se presenta con su imagen, título y un botón "+" para ordenar el libro. La lista de libros se obtiene de la base de datos de Oracle y se muestra dinámicamente en la interfaz utilizando plantillas HTML que nosotros diseñamos.
+
+### Barra Lateral:
+
+La barra lateral ubicada en el lado izquierdo de la interfaz contiene tres botones: "Salir", "Multas" y "Órdenes". Estos botones están implementados como elementos HTML interactivos y se comunican con el servidor a través de solicitudes HTTP para realizar acciones correspondientes, como cerrar la sesión, acceder a la página de multas o acceder a la página de órdenes.
+
+### Barra de Búsqueda y Filtrado:
+
+En la parte superior de la página principal, hay una barra de búsqueda que permite a los usuarios buscar libros por su nombre. Justo debajo de la barra de búsqueda, se encuentran los botones de filtrado por categorías. Al hacer clic en estos botones, se envían solicitudes al servidor para obtener libros de la categoría seleccionada y se actualiza la lista de libros en la interfaz utilizando técnicas de renderizado dinámico.
+
+### Detalles del Libro:
+
+Cuando un usuario hace clic en el botón "+" de un libro, se le redirige a la página de detalles del libro. Aquí se muestran detalles más específicos sobre el libro, como la portada, título, ISBN, autor, género, editorial y stock disponible. Los detalles se obtienen de la base de datos de Oracle y se muestran en la interfaz.
+
+### Órdenes
+
+La página de órdenes muestra todas las órdenes de préstamo realizadas por el usuario. Para cada orden, se muestra la imagen del libro prestado, el ISBN, la fecha de préstamo y la fecha de caducidad. Además, se muestra un botón de estado que permite al usuario actualizar el estado de la orden. Los datos de las órdenes se obtienen de la base de datos de Oracle, específicamente de la tabla "prestamos".
+
+### Multas
+
+En la página de multas, se muestran todas las multas pendientes del usuario. Cada multa incluye detalles como la fecha de creación, el monto a pagar y el estado de la multa. Los datos de las multas se obtienen de la base de datos de Oracle, específicamente de la tabla "multas".
+
+### Descripción de reglas de seguridad (acceso/operación)
+
+- Autenticación y Autorización: Se verifica la identidad del usuario utilizando credenciales únicas (correo electrónico y contraseña). Solo los usuarios autenticados tienen acceso a sus datos personales, así como a las multas y órdenes.
+
+- Protección de Contraseñas: Las contraseñas se transmiten de manera segura a través de conexiones cifradas para prevenir el acceso no autorizado durante la transmisión.
+
+- Gestión de Sesiones: Se utiliza un mecanismo de gestión de sesiones para mantener el estado del usuario.
+
+## 9. Conclusión
+
+En resumen, este proyecto realizado para la clase de Introducción a las bases de datos ha logrado cumplir con los objetivos establecidos. Hemos desarrollado un sitio web de una biblioteca que permite prestar libros a usuarios registrados y generar multas para préstamos con retraso.
+
+Durante el proceso de desarrollo, se ha puesto un énfasis en la experiencia del usuario, creando una interfaz sencilla y amigable. La integración con la base de datos ha permitido un almacenamiento eficiente de la información, asegurando la capacidad de consulta en el futuro.
+
+En conclusión, el proyecto ha logrado satisfacer las necesidades y requerimientos establecidos. Además, hemos adquirido conocimientos sobre el desarrollo de sitios web y su relación con la materia. Presentamos así el proyecto desarrollado para esta asignatura.
+
+
+
+
+
 
