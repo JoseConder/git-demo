@@ -1,4 +1,4 @@
-#Manual Técnico
+# Manual Técnico
 1. Sistema/Aplicación
 
     Nombre del sistema: Sistema de Gestión bibliotecario Web
