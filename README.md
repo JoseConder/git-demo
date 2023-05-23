@@ -1,5 +1,9 @@
 # Sistema de Gestión bibliotecario Web
 
+## Nota importante
+
+> La Documentacion completa la puedes encontrar en el archivo manualUsuario.pdf y en el archivo manualTecnico.pdf en este mismo repositorio
+
 ## Descripción
 
 El Sistema de Gestión bibliotecario Web es un sistema encargado de la administración y gestión de información relacionada con los libros, revistas, artículos y otros materiales de la biblioteca, así como información sobre los usuarios, préstamos, reservas y otros aspectos de la gestión de la biblioteca.
@@ -107,7 +111,7 @@ La estructura modular del sistema sigue un enfoque MVC (Modelo-Vista-Controlador
 - Módulo de Seguimiento de Órdenes: Permite a los usuarios ver el estado de sus préstamos y actualizar el estado de las órdenes (entregado, multa pendiente, etc.).
 - Módulo de Multas: Maneja la generación y visualización de multas, así como su estado y pagos.
 
-## 5. Lógica/Reglas del Negocio
+## Lógica/Reglas del Negocio
 
 Las reglas de negocio y la lógica de la aplicación de Biblioteca Online se centran en el manejo de los siguientes aspectos:
 
@@ -150,7 +154,7 @@ Las reglas de negocio y la lógica de la aplicación de Biblioteca Online se cen
 
 Estas reglas de negocio y lógica de la aplicación garantizan que los usuarios puedan registrarse, buscar, ordenar y realizar un seguimiento de sus préstamos de libros de manera eficiente y precisa, siguiendo las normas y restricciones establecidas en el sistema de biblioteca.
 
-## 6. Descripción Interfaz de la aplicación
+## Descripción Interfaz de la aplicación
 
 La aplicación de Biblioteca FCM presenta una interfaz intuitiva y fácil de usar para los usuarios. A continuación, se proporciona una descripción detallada de los componentes y características clave de la interfaz desde una perspectiva técnica.
 
@@ -194,7 +198,7 @@ En la página de multas, se muestran todas las multas pendientes del usuario. Ca
 
 - Gestión de Sesiones: Se utiliza un mecanismo de gestión de sesiones para mantener el estado del usuario.
 
-## 9. Conclusión
+## Conclusión
 
 En resumen, este proyecto realizado para la clase de Introducción a las bases de datos ha logrado cumplir con los objetivos establecidos. Hemos desarrollado un sitio web de una biblioteca que permite prestar libros a usuarios registrados y generar multas para préstamos con retraso.
 
